@@ -72,7 +72,7 @@
                         <button type="submit" class="btn btn-primary btn-block">Save</button>
                     </div>
                     <div class="form-group col-sm-4">
-                        <a class="btn btn-primary" href='/'><span class='glyphicon glyphicon-arrow-left'></span>&nbsp;Back</a>
+                        <a class="btn btn-primary" href='/games'><span class='glyphicon glyphicon-arrow-left'></span>&nbsp;Back</a>
                     </div>
 
                 </div>

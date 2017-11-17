@@ -48,7 +48,7 @@
 
         <div class="col-sm-6 col-sm-offset-3">
             <div class="form-group">
-                <a class="btn btn-primary" href='/'><span class='glyphicon glyphicon-arrow-left'></span>&nbsp;Back</a>
+                <a class="btn btn-primary" href='/games'><span class='glyphicon glyphicon-arrow-left'></span>&nbsp;Back</a>
             </div>
         </div>
     </div>
