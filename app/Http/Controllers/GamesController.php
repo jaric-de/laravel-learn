@@ -116,7 +116,7 @@ class GamesController extends Controller
         Game::find($id)->update($postData);
 
         //store status message
-        \Session::flash('success_msg', 'Post updated successfully!');
+        \Session::flash('success_msg', 'Game updated successfully!');
 
         return redirect('/');
     }

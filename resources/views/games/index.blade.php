@@ -4,7 +4,11 @@
     <div class="row">
         <h2>Games List</h2>
         @if(Session::has('success_msg'))
-            <div class="alert alert-success">{{ Session::get('success_msg') }}</div>
+            <div class="alert alert-success alert-dismissible">{{ Session::get('success_msg') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @endif
         <table class="table">
             <thead>
