@@ -11,6 +11,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class Game extends \Eloquent
 {
@@ -24,5 +26,17 @@ class Game extends \Eloquent
         'duration',
         'release_year'
     ];
-    public $fff;
+
+    public static function scopeFilter(Builder $query, $filters)
+    {
+        if (isset($filters['platform'])) {
+            $query->where('platform', $filters['platform']); // whereMonth expect 5, not May
+        }
+
+        if (isset($filters['price'])) {
+            $query->orderBy('price', $filters['price']);
+        }
+
+        return $query;
+    }
 }

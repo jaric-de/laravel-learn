@@ -10,6 +10,24 @@
                 </button>
             </div>
         @endif
+        {{ Form::open(['url' => '/games', 'method' => 'get']) }}
+
+        <div class="row">
+            <div class="form-group col-sm-2">
+                {{ Form::label('platform', 'Select platform:') }}
+                {{ Form::select('platform', [''=> 'All', 'pc' => 'PC', 'ps4' => 'PS4', 'xbox' => 'Xbox'], [], ['id'=> 'platform', 'class' => 'platform form-control']) }}
+            </div>
+            <div class="form-group col-sm-3">
+                {{ Form::label('price', 'Choose price sort:') }}
+                {{ Form::select('price', [''=> '', 'desc' => 'Expensive first', 'asc' => 'Cheap first'], [], ['id'=> 'price', 'class' => 'price form-control']) }}
+            </div>
+            <div class="form-group col-sm-3" style="top: 28px">
+                {{ Form::button('Sort', ['type' => 'submit','class' => 'btn btn-primary form-control']) }}
+            </div>
+            <div class="form-group col-sm-3">
+            </div>
+        </div>
+        {{ Form::close() }}
         <table class="table">
             <thead>
             <tr>
