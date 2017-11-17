@@ -26,7 +26,7 @@ class GamesCreateSeeder extends Seeder
                 'genre' => $faker->randomElement(['action', 'strategy', 'quest', 'sport_simulator']),
                 'price' => $faker->randomFloat(2, 0, 100),
                 'description' => $faker->text(150),
-                'duration' => $faker->randomNumber(),
+                'duration' => $faker->numberBetween(0, 2000),
                 'release_year' => $faker->numberBetween(1950, now()->year),
                 'created_at' => now(),
                 'updated_at' => now()
