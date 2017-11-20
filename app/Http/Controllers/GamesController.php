@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GameDeletingEvent;
 use App\Game;
 use App\Http\Requests\GameUpdateForm;
 use App\Mail\NewGame;
@@ -150,7 +151,7 @@ class GamesController extends Controller
     public function destroy($id)
     {
         Game::find($id)->delete();
-
+        \Event::fire(new GameDeletingEvent($id));
         \Session::flash('success_msg', 'Game deleted successfully!');
 
         return redirect('/');
@@ -158,8 +159,5 @@ class GamesController extends Controller
 
     public function test()
     {
-        echo "<pre>";
-        print_r(auth()->user());
-        echo "</pre>";
     }
 }
