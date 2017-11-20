@@ -6,6 +6,7 @@ use App\Game;
 use App\Http\Requests\GameUpdateForm;
 use App\Mail\NewGame;
 use App\Mail\NewGameMarkdown;
+use App\Notifications\GameSuccessCreating;
 use App\User;
 use Illuminate\Http\Request;
 use PharIo\Manifest\Email;
@@ -15,6 +16,7 @@ class GamesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('check.email');
     }
 
     /**
@@ -79,9 +81,12 @@ class GamesController extends Controller
         // saving
         $attributes = \request()->all();
         $attributes['user_id'] = auth()->id();
-        Game::create($attributes);
-        \Mail::to(auth()->user())->send(new NewGameMarkdown(auth()->user(),  \request('title')));
+        $result = Game::create($attributes);
+//        \Mail::to(auth()->user())->send(new NewGameMarkdown(auth()->user(),  \request('title')));
 
+        \Notification::send(auth()->user(), new GameSuccessCreating(\request('title'), $result->getAttribute('id')));
+
+        \Session::flash('success_msg', 'Game created successfully!');
 
         return redirect('/');
 
@@ -153,7 +158,8 @@ class GamesController extends Controller
 
     public function test()
     {
-        $result = Game::where('platform', 'ps4')->orderBy('price', 'desc')->get()->toArray();
-        dd($result);
+        echo "<pre>";
+        print_r(auth()->user());
+        echo "</pre>";
     }
 }
