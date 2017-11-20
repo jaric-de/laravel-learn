@@ -59,8 +59,7 @@ class GamesController extends Controller
      */
     public function store()
     {
-        // validation before saving
-        $this->validate(\request(), [
+        $validator = \Validator::make(\request()->all(), [
             'title' => 'required|unique:games,title,id|min:3',
             'platform' => 'required',
             'genre' => 'required',
@@ -70,6 +69,12 @@ class GamesController extends Controller
             'release_year' => 'required'
         ]);
 
+        if ($validator->fails()) {
+            $errorMessages = $validator->errors()->getMessages();
+            \Session::flash('validation_errors', $errorMessages);
+
+            return redirect()->back();
+        }
 
         // saving
         $attributes = \request()->all();

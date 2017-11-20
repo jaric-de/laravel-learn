@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    @if(Session::has('validation_errors'))
+        <div class="alert alert-danger">
+            @foreach(Session::get('validation_errors') as $key => $value)
+                <li>{{ $value[0] }}</li>
+            @endforeach
+        </div>
+    @endif
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <h2 class="text-center">{{ $title }}</h2>
@@ -65,7 +72,7 @@
                     <textarea class="form-control" id="description" name="description" placeholder="Enter game description">{{ $game->description }}</textarea>
                 </div>
 
-                @include('layouts.form_errors')
+                {{--@include('layouts.form_errors')--}}
 
                 <div class="row">
                     <div class="form-group col-sm-4">
