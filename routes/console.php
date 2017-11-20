@@ -16,3 +16,7 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+//Artisan::command('deleteInactiveGames', function () {
+//    \App\Game::unactive()->delete();
+//})->describe('Delete inactive games');

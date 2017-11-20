@@ -39,4 +39,11 @@ class Game extends \Eloquent
 
         return $query;
     }
+
+    public static function scopeUnactive(Builder $query)
+    {
+        $query->where('is_active', false);
+
+        return $query;
+    }
 }
