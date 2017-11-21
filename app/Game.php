@@ -19,7 +19,6 @@ class Game extends \Eloquent
     protected $fillable = [
         'title',
         'description',
-        'user_id',
         'platform',
         'genre',
         'price',

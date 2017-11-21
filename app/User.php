@@ -30,7 +30,7 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function user()
+    public function games()
     {
         return $this->hasMany(Game::class);
     }

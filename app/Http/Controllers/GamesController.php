@@ -74,7 +74,7 @@ class GamesController extends Controller
         // saving
         $attributes = \request()->all();
         $attributes['user_id'] = auth()->id();
-        $result = Game::create($attributes);
+        $result = \Auth::user()->games()->create($attributes);
 //        \Mail::to(auth()->user())->send(new NewGameMarkdown(auth()->user(),  \request('title')));
 
         \Notification::send(auth()->user(), new GameSuccessCreating(\request('title'), $result->getAttribute('id')));
