@@ -27,23 +27,50 @@ class Game extends \Eloquent
         'release_year'
     ];
 
-    public static function scopeFilter(Builder $query, $filters)
+    /**
+     * @param Builder $query
+     * @param $platformVal
+     * @return Builder
+     */
+    public static function scopePlatformFilter(Builder $query, $platformVal)
     {
-        if (isset($filters['platform'])) {
-            $query->where('platform', $filters['platform']); // whereMonth expect 5, not May
-        }
-
-        if (isset($filters['price'])) {
-            $query->orderBy('price', $filters['price']);
+        if (isset($platformVal)) {
+            $query->where('platform', $platformVal);
         }
 
         return $query;
     }
 
-    public static function scopeUnactive(Builder $query)
+    /**
+     * @param Builder $query
+     * @param $sortType
+     * @return Builder
+     */
+    public static function scopePriceSort(Builder $query, $sortType)
+    {
+        if (isset($sortType)) {
+            $query->orderBy('price', $sortType);
+        }
+
+        return $query;
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public static function scopeInactive(Builder $query)
     {
         $query->where('is_active', false);
 
         return $query;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

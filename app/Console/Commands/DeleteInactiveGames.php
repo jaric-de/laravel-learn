@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Game;
 use Illuminate\Console\Command;
 
 class DeleteInactiveGames extends Command
@@ -37,6 +38,6 @@ class DeleteInactiveGames extends Command
      */
     public function handle()
     {
-        \App\Game::unactive()->delete();
+        Game::inactive()->delete();
     }
 }

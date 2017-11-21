@@ -16,8 +16,7 @@ class GamesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('check.email');
+        $this->middleware(['auth', 'check.email']);
     }
 
     /**
@@ -28,16 +27,9 @@ class GamesController extends Controller
      */
     public function index(Request $request)
     {
-        $games = Game::filter(\request(['platform', 'price']))->get();
-
-//        if (isset($request->all()['platform']) && isset($request->all()['price'])) {
-//            $games = Game::where('platform', $request->all()['platform'])
-//                ->orderBy('price', $request->all()['price'])
-//                ->get();
-//        } else {
-//            $games = Game::latest()->get();
-//
-//        }
+        $games = Game::platformFilter(\request('platform'))
+            ->priceSort(\request('price'))
+            ->get();
 
         return view('games.index', compact('games'));
     }
@@ -155,9 +147,5 @@ class GamesController extends Controller
         \Session::flash('success_msg', 'Game deleted successfully!');
 
         return redirect('/');
-    }
-
-    public function test()
-    {
     }
 }
