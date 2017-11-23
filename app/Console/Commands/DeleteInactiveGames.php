@@ -19,7 +19,7 @@ class DeleteInactiveGames extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Delete inactive games';
 
     /**
      * Create a new command instance.
@@ -38,6 +38,15 @@ class DeleteInactiveGames extends Command
      */
     public function handle()
     {
-        Game::inactive()->delete();
+        $games = Game::inactive()->get();
+        $bar = $this->output->createProgressBar($games->count());
+        $this->info("Start deleting");
+
+        foreach ($games as $game) {
+            $game->delete();
+            $bar->advance();
+        }
+
+        $this->info(PHP_EOL . 'Finish deleting');
     }
 }
