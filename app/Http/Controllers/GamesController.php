@@ -44,7 +44,7 @@ class GamesController extends Controller
         return view('games.create', [
             'game' => new Game(),
             'action' => 'games/store',
-            'title' => 'Create',
+            'title' => trans('games.create.title'),
         ]);
     }
 
@@ -71,15 +71,14 @@ class GamesController extends Controller
             return redirect()->back();
         }
 
-        // saving
+        // Saving
         $attributes = \request()->all();
         $attributes['user_id'] = auth()->id();
         $result = \Auth::user()->games()->create($attributes);
-//        \Mail::to(auth()->user())->send(new NewGameMarkdown(auth()->user(),  \request('title')));
 
         \Notification::send(auth()->user(), new GameSuccessCreating(\request('title'), $result->getAttribute('id')));
 
-        \Session::flash('success_msg', 'Game created successfully!');
+        \Session::flash('success_msg', trans('games.store.success_msg'));
 
         return redirect('/');
 
@@ -109,7 +108,7 @@ class GamesController extends Controller
         return view('games.create', [
             'game' => $game = Game::find($id),
             'action' => 'games/update/' . $game->id,
-            'title' => 'Edit'
+            'title' => trans('games.edit.title')
         ]);
     }
 
@@ -122,14 +121,14 @@ class GamesController extends Controller
      */
     public function update(GameUpdateForm $request, $id)
     {
-        //get post data
+        // Get post data
         $postData = $request->all();
 
-        //update post data
+        // Update post data
         Game::find($id)->update($postData);
 
-        //store status message
-        \Session::flash('success_msg', 'Game updated successfully!');
+        // Store status message
+        \Session::flash('success_msg', trans('games.update.success_msg'));
 
         return redirect('/');
     }

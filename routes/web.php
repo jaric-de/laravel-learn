@@ -18,11 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
-Route::get('games/test', 'GamesController@test');
-
-
 Route::get('/', 'GamesController@index');
 Route::get('/games', 'GamesController@index')->name('games_list');
 Route::get('games/create', 'GamesController@create');
