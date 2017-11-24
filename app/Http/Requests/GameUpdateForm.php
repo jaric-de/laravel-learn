@@ -25,7 +25,12 @@ class GameUpdateForm extends FormRequest
     {
         return [
             'title' => 'required|min:3',
-            'description' => 'required'
+            'platform' => 'required',
+            'genre' => 'required',
+            'price' => 'required',
+            'description' => 'required|min:3',
+            'duration' => 'required',
+            'release_year' => 'required'
         ];
     }
 }
