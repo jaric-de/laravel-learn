@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\GameDeletingEvent;
-use App\Game;
+use App\Models\Game;
 use App\Notifications\GameSuccessCreating;
 use App\Notifications\GameSuccessDeleting;
 use Illuminate\Queue\InteractsWithQueue;

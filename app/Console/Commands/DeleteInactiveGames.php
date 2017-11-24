@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Game;
+use App\Models\Game;
 use Illuminate\Console\Command;
 
 class DeleteInactiveGames extends Command

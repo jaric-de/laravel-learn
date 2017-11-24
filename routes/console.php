@@ -18,5 +18,5 @@ Artisan::command('inspire', function () {
 })->describe('Display an inspiring quote');
 
 //Artisan::command('deleteInactiveGames', function () {
-//    \App\Game::unactive()->delete();
+//    \App\Models\Game::unactive()->delete();
 //})->describe('Delete inactive games');

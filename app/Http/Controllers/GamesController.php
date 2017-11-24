@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Events\GameDeletingEvent;
-use App\Game;
+use App\Models\Game;
 use App\Http\Requests\GameUpdateForm;
 use App\Mail\NewGame;
 use App\Mail\NewGameMarkdown;
 use App\Notifications\GameSuccessCreating;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use PharIo\Manifest\Email;
 
