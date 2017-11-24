@@ -16,7 +16,7 @@ class CheckEmail
      */
     public function handle($request, Closure $next)
     {
-        $userEmail = User::find(auth()->id())->email;
+        $userEmail = auth()->user()->email;
 
         if ($userEmail === 'yaroslav@gmail.com') {
             return $next($request);
