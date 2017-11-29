@@ -1,16 +1,9 @@
 @extends('layouts.app')
 
-{{-- Learning process. First type for validation errors --}}
-@section('content')
-    @if(Session::has('validation_errors'))
-        <div class="alert alert-danger">
-            @foreach(Session::get('validation_errors') as $key => $value)
-                <li>{{ $value[0] }}</li>
-            @endforeach
-        </div>
-    @endif
 
-    {{-- Second type for validation errors --}}
+@section('content')
+
+    {{-- Learning process. Errors through laravel automatic mechanism (all validation errors in $error var) --}}
     @include('layouts.form_errors')
 
     <div class="row">
@@ -18,8 +11,8 @@
             <h2 class="text-center">{{ $title }}</h2>
             {!!
                 Form::open([
-                    'url' => '/games/store',
-                    'method' => 'post',
+                    'url' => '/games/update/' . $game->id,
+                    'method' => 'patch',
                     'role' => 'form'
                 ])
             !!}

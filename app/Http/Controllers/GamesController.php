@@ -43,7 +43,6 @@ class GamesController extends Controller
     {
         return view('games.create', [
             'game' => new Game(),
-            'action' => 'games/store',
             'title' => trans('games.create.title'),
         ]);
     }
@@ -105,9 +104,8 @@ class GamesController extends Controller
      */
     public function edit($id)
     {
-        return view('games.create', [
+        return view('games.edit', [
             'game' => $game = Game::find($id),
-            'action' => 'games/update/' . $game->id,
             'title' => trans('games.edit.title')
         ]);
     }

@@ -24,5 +24,5 @@ Route::get('games/create', 'GamesController@create');
 Route::post('games/store', 'GamesController@store');
 Route::get('games/{id}', 'GamesController@show');
 Route::get('games/edit/{id}', 'GamesController@edit');
-Route::post('games/update/{id}', 'GamesController@update');
+Route::patch('games/update/{id}', 'GamesController@update');
 Route::get('games/delete/{id}', 'GamesController@destroy');
