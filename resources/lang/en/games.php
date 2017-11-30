@@ -1,7 +1,8 @@
 <?php
 return [
-
-
+    'common' => [
+        'games_title_page' => ':title page'
+    ],
     'index' => [
         'create_game_button' => 'Create Game',
         'th_title' => 'Title',
@@ -22,8 +23,6 @@ return [
         'opt_cheap_first' => 'Cheap first',
         'opt_expensive_first' => 'Expensive first',
         'price_sort_button' => 'Sort',
-
-
     ],
 
     'show' => [
