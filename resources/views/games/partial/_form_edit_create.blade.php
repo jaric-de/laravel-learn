@@ -74,7 +74,7 @@
         <button type="submit" class="btn btn-primary btn-block">{{ trans('games.create.save_button') }}</button>
     </div>
     <div class="form-group col-sm-4">
-        <a class="btn btn-primary" href='/games'>
+        <a class="btn btn-primary" href='{{ route('game_list') }}'>
             <span class='glyphicon glyphicon-arrow-left'></span>{{ trans('games.create.back_button') }}
         </a>
     </div>

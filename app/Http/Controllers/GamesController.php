@@ -10,10 +10,21 @@ use App\Mail\NewGameMarkdown;
 use App\Notifications\GameSuccessCreating;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use PharIo\Manifest\Email;
 
+/**
+ * Class GamesController
+ * @package App\Http\Controllers
+ */
 class GamesController extends Controller
 {
+
+    const ITEMS_PER_PAGE = 3;
+
+    /**
+     * GamesController constructor.
+     */
     public function __construct()
     {
         $this->middleware(['auth', 'check.email']);
@@ -27,9 +38,11 @@ class GamesController extends Controller
      */
     public function index(Request $request)
     {
+
         $games = Game::platformFilter(\request('platform'))
             ->priceSort(\request('price'))
-            ->get();
+            ->paginate(static::ITEMS_PER_PAGE)
+            ->appends(Input::except('page'));
 
         return view('games.index', compact('games'));
     }
@@ -134,8 +147,9 @@ class GamesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function destroy($id)
     {

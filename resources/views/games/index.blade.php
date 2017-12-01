@@ -64,8 +64,15 @@
                     <td scope="row">
                         <div class="row">
                             <a href='/games/{{ $game->id }}'><span class='glyphicon glyphicon-play'></span></a>
-                            <a href='/games/edit/{{ $game->id }}'><span class='glyphicon glyphicon-edit'></span></a>
-                            <a href='/games/delete/{{ $game->id }}'><span class='glyphicon glyphicon-trash'></span></a>
+                            <a href='/games/{{ $game->id }}/edit'><span class='glyphicon glyphicon-edit'></span></a>
+                            {{--<a href='/games/delete/{{ $game->id }}'><span class='glyphicon glyphicon-trash'></span></a>--}}
+                            <form style="display: inline-block; margin-left: -14px" action="/games/{{ $game->id }}" method="post">
+                                <input type="hidden" name="_method" value="delete" />
+                                {!! csrf_field() !!}
+                                <button type="submit" class="btn btn-link">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
                         </div>
 
                     </td>
@@ -74,6 +81,7 @@
             </tbody>
 
         </table>
+        <div class="pagination center">{{ $games->links() }}</div>
     </div>
     <br>
     <div class="row">

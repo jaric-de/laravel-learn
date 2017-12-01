@@ -18,7 +18,7 @@
             <h2 class="text-center">{{ trans('games.common.games_title_page', ['title' => $title]) }}</h2>
             {!!
                 Form::open([
-                    'url' => '/games/store',
+                    'url' => '/games',
                     'method' => 'post',
                     'role' => 'form'
                 ])
